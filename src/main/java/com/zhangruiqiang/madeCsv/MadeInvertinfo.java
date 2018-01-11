@@ -4,6 +4,7 @@ package com.zhangruiqiang.madeCsv;
 import com.zhangruiqiang.madeCsv.entity.FieldSort;
 import com.zhangruiqiang.madeCsv.entity.Tzr;
 import com.zhangruiqiang.madeCsv.util.MadeDate;
+import com.zhangruiqiang.madeCsv.util.MadePlatFormNo;
 import com.zhangruiqiang.madeCsv.util.SubjectNo;
 import com.zhangruiqiang.madeCsv.util.SubjectNo2;
 
@@ -230,7 +231,7 @@ public class MadeInvertinfo {
 
         for(int i=0;i<row;i++){
             Tzr tzr=new Tzr();
-            tzr.setPlatformNo(String.valueOf((int)Math.abs((Math.random()*9+1)*1000000000)));
+            tzr.setPlatformNo(MadePlatFormNo.platformnolist.get(i));
             tzr.setStartTime(MadeDate.reanomDate("2015-12-03 12:33:04","2017-01-04 14:23:01").toString());
             tzr.setEndTime(MadeDate.reanomDate("2016-01-06 12:33:04","2018-01-04 14:23:01").toString());
             tzr.setNewOpenAccountNumber(String.valueOf((int)Math.abs((Math.random()*9+1)*1000)));
