@@ -4,6 +4,7 @@ package com.zhangruiqiang.madeCsv;
 import com.zhangruiqiang.madeCsv.entity.Bd;
 import com.zhangruiqiang.madeCsv.entity.FieldSort;
 import com.zhangruiqiang.madeCsv.util.*;
+import net.sf.json.JSONArray;
 
 import java.io.*;
 import java.lang.reflect.Field;
@@ -109,12 +110,12 @@ public class MadeProject {
     public static void wiritFile(List<Object> list)  {
         String folderPath="D://zipdata//";
         File file=new File(folderPath,"PROJECT_INFO.csv");
-        System.out.println(file);
+      //  System.out.println(file);
         BufferedWriter bf=null;
-        System.out.println(list);
+       // System.out.println(list);
         FileWriter fw= null;
         try {
-            System.out.println(file+"--------------------");
+           // System.out.println(file+"--------------------");
             fw = new FileWriter(file,true);
         } catch (IOException e) {
             e.printStackTrace();
@@ -122,7 +123,7 @@ public class MadeProject {
         bf=new BufferedWriter(fw);
         for(int i=0;i<list.size();i++){
 
-            System.out.println(list.get(i));
+            //System.out.println(list.get(i));
             Bd bd= (Bd) list.get(i);
             Class clazz=bd.getClass();
 
@@ -132,35 +133,13 @@ public class MadeProject {
                 Method[] methods=clazz.getMethods();
                 List<Method> listM=rMethod(methods);
                 Map<Integer,Method> map=rMethoda(listM);
-                System.out.println(map);
+                //System.out.println(map);
                 List<String> list1=new ArrayList<String>();
-                System.out.println(listM);
+                //System.out.println(listM);
 
  System.out.println(clazz);
 
-                /*Method[] methods=clazz.getMethods();
-                List<String> list1=new ArrayList<String>();*/
-              /*  for(int j=methods.length-1;j>=0;j--) {
-                    if (methods[j].getName().contains("get")) {
 
-                        String s=null;
-                        if(j==0){
-                            s=methods[j].invoke(bd).toString();
-                            System.out.println(s+"++++++++++++");
-
-                        }else{
-                            s=methods[j].invoke(bd)+",";
-                        }
-                        list1.add(s);
-
-                    }
-                }
-                list1.remove(0);
-                for(String s:list1){
-                    System.out.println(s);
-                    bf.write(s);
-
-                }*/
 
                 String s=null;
 
@@ -173,7 +152,7 @@ public class MadeProject {
                         s=  entry.getValue().invoke(bd)+",";
                     }
 
-                    System.out.println(s+"---------------------------------------");
+                  //  System.out.println(s+"---------------------------------------");
                     bf.write(s);
                 }
 
@@ -220,7 +199,7 @@ public class MadeProject {
 
 
         }
-        System.out.println(map);
+        //System.out.println(map);
         return map;
     }
 
@@ -229,11 +208,33 @@ public class MadeProject {
         List<Bd> list=new ArrayList<Bd>();
         for(int i=0;i<row;i++){
             Bd  bd=new Bd();
-            bd.setProjectNo(MadeUserNo.getSingleUserNo());
+            String projectNo=MadeUserNo.getSingleUserNo();
+            bd.setProjectNo(projectNo);
             bd.setExpectedYield(String.valueOf(Math.abs((Math.random()*9+1))));
             bd.setProjectName(UUID.randomUUID().toString());
             bd.setLoanTime(MadeDate.reanomDate("2016-01-06 12:33:04","2018-01-04 14:23:01"));
-            bd.setPlatformNo(String.valueOf((int)Math.abs((Math.random()*9+1)*1000000000)));
+            System.out.println(MadePlatFormNo.platformnolist+"============================================");
+            String platformNo=MadePlatFormNo.platformnolist.get(new Random().nextInt(MadePlatFormNo.platformnolist.size()));
+            bd.setPlatformNo(platformNo);
+            JSONArray jsonArray=JSONdate.userdate;
+            int ss=1;
+            for(int j=0;j<jsonArray.size();j++){
+                System.out.println("p;atformNo-----------"+platformNo);
+
+                if(jsonArray.getJSONObject(j).getString("platformNo").equals(platformNo)){
+                    System.out.println(projectNo);
+                    jsonArray.getJSONObject(j).getJSONArray("projectList").add(projectNo);
+                    System.out.println(ss+"OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+                    ss++;
+                   /* List<String> listss= (List<String>) jsonArray.getJSONObject(j).get("projectList");
+                    listss.add(platformNo);
+                    jsonArray.getJSONObject(j).;*/
+                    break;
+                }else{
+                    continue;
+                }
+
+            }
             bd.setProjectType("STANDARDPOWDER");
             bd.setRepaymentWay(MadeHkType.getHkType());
             bd.setProjectPeriod(String.valueOf((int)Math.abs((Math.random()*9+1)*10)));
@@ -243,7 +244,7 @@ public class MadeProject {
             bd.setSubjectNo(SubjectNo2.getSingleSubjectNo());
             //bd.setRepaymentTimes(MadeDate.reanomDate("2016-01-06 12:33:04","2018-01-04 14:23:01"));
             list.add(bd);
-            System.out.println(bd);
+           // System.out.println(bd);
         }
         return list;
     }

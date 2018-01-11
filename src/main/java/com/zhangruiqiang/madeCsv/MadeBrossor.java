@@ -248,7 +248,7 @@ public class MadeBrossor {
         for(int i=0;i<row;i++){
             Jpop jpop=new Jpop();
             jpop.setUserNo(MadeUserNo.getSingleUserNo());
-            jpop.setPlatformNo(String.valueOf((int)Math.abs((Math.random()*9+1)*1000000000)));
+            jpop.setPlatformNo(MadePlatFormNo.platformnolist.get(new Random().nextInt(MadePlatFormNo.platformnolist.size())));
             jpop.setUserType(MadeUserType.getUserType());
             jpop.setRealName(MadeName.madeName());
             jpop.setIdCardType("PRC_ID");

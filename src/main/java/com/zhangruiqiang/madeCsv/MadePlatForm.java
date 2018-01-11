@@ -4,6 +4,8 @@ package com.zhangruiqiang.madeCsv;
 import com.zhangruiqiang.madeCsv.entity.FieldSort;
 import com.zhangruiqiang.madeCsv.entity.PlatMes;
 import com.zhangruiqiang.madeCsv.util.*;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -55,7 +57,7 @@ public class MadePlatForm {
             list.add(field.toString().substring(field.toString().lastIndexOf(".")+1));
         }
         for(Field field: fields){
-            System.out.println(field.toString());
+            //System.out.println(field.toString());
 
         }
         FileIo.write(list);
@@ -70,7 +72,7 @@ public class MadePlatForm {
     public static void wiritFile(List<Object> list){
         String folderPath="D://zipdata//";
         File file=new File(folderPath,"PLATFORM_INFO.csv");
-        System.out.println(file);
+        //System.out.println(file);
         BufferedWriter bf=null;
         System.out.println(list);
         FileWriter fw= null;
@@ -84,7 +86,7 @@ public class MadePlatForm {
 
         for(int i=0;i<list.size();i++){
 
-            System.out.println(list.get(i));
+           // System.out.println(list.get(i));
             PlatMes platMes= (PlatMes) list.get(i);
             Class clazz=platMes.getClass();
 
@@ -94,9 +96,9 @@ public class MadePlatForm {
 
                 Method[] methods=clazz.getMethods();
                 List<Method> listm=rMethod(methods);
-                System.out.println(listm);
+                //System.out.println(listm);
                 Map<Integer,Method> map=rMethoda(listm);
-                System.out.println(map);
+               // System.out.println(map);
                 List<String> list1=new ArrayList<String>();
 
 
@@ -108,7 +110,7 @@ public class MadePlatForm {
                         s=  entry.getValue().invoke(platMes).toString();
                     }else{
                         s=  entry.getValue().invoke(platMes)+",";
-                        System.out.println(entry.getValue().toString());
+                        //System.out.println(entry.getValue().toString());
                     }
                     bf.write(s);
                 }
@@ -128,89 +130,6 @@ public class MadePlatForm {
 
 
 
-/*  for(int i=0;i<list.size();i++){
-
-            System.out.println(list.get(i));
-            PlatMes platMes= (PlatMes) list.get(i);
-
-            try {
-                *//*
-*/
-/*bf.write(platMes.getPlatformNo()+",");
-                bf.write(platMes.getGetPlatformName()+",");
-                bf.write(platMes.getLegal()+",");
-                bf.write(platMes.getIdCardType()+",");
-                bf.write(platMes.getIdCardNo()+",");
-                bf.write(platMes.getEnterpriseName()+",");
-                bf.write(platMes.getBusinessLicense()+",");
-                bf.write(platMes.getOrgNo()+",");
-                bf.write(platMes.getTaxNo()+",");
-                bf.write(platMes.getBankLicense()+",");
-                bf.write(platMes.getCreditCode()+",");
-                bf.write(platMes.getUnifiedCode()+",");
-                bf.write(platMes.getWebSiteName()+",");
-                bf.write(platMes.getWebSiteUrl()+",");
-                bf.write(platMes.getPlatformOperationTime()+",");
-                bf.write(platMes.getPlatformlastModifyTime()+",");
-                bf.write(platMes.getRegisteredAddress()+",");
-                bf.write(platMes.getContactAddress()+",");
-                bf.write(platMes.getContacts()+",");
-                bf.write(platMes.getContactsMobile());*//*
-*/
-/*
-
-                bf.write(2333+",");
-                bf.write(2333+",");
-                bf.write(2333+",");
-                bf.write(2333+",");
-                bf.write(2333+",");
-                bf.write(2333+",");
-                bf.write(2333+",");
-                bf.write(2333+",");
-                bf.write(2333+",");
-                bf.write(2333+",");
-                bf.write(2333+",");
-                bf.write(2333+",");
-                bf.write(2333+",");
-                bf.write(2333+",");
-                bf.write(2333+",");
-                bf.write(2333+",");
-                bf.write(2333+",");
-                bf.write(2333+",");
-                bf.write(2333+",");
-                bf.write("2333");
-               *//*
-*/
-/* if(i==list.size()-1){
-                    bf.write("23333");
-                }else{
-                    bf.write(23333+",");
-                }*//*
-*/
-/*
-                System.out.println(platMes.getBankLicense());
-                *//*
-*/
-/*if(i!=list.size()-1){
-
-                    bf.write(",");
-                }*//*
-*/
-/*
-                bf.write("\r\n");
-               *//*
-*/
-/* if(i==list.size()-1) {
-                    bf.write("\r\n");
-                }*//*
-*/
-/*
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-
-        }*/
 
 
             try {
@@ -253,8 +172,18 @@ public class MadePlatForm {
         for(int i=0;i<row;i++){
             PlatMes platMes=new PlatMes();
             platMes.setRecordType(MadeRecordType.getRecordTyoe());
-            platMes.setPlatformNo(MadePlatFormNo.platformnolist.get(i));
-            platMes.setPlatformName(MadePlatformName.getPlatFormName());
+            String platformName=MadePlatformName.getPlatFormName();
+            platMes.setPlatformName(platformName);
+            String platformNo=MadePlatFormNo.platformnolist.get(i);
+            platMes.setPlatformNo(platformNo);
+            JSONObject jb=new JSONObject();
+            //JSONArray jsonArray=new JSONArray();
+            List<String> jsonlist=new ArrayList<String>();
+            jb.put("platformNo",platformNo);
+            jb.put("platName",platformName);
+            jb.put("projectList",jsonlist);
+            JSONdate.userdate.add(jb);
+
             platMes.setLegal(MadeName.madeName());
             platMes.setIdCardType("PRC_ID");
             platMes.setIdCardNo(MadeIdNumber.getIdNumber());

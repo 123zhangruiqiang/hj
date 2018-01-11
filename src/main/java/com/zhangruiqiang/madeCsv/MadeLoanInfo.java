@@ -223,7 +223,7 @@ public class MadeLoanInfo {
         List<Cj> list=new ArrayList<Cj>();
         for(int i=0;i<row;i++){
             Cj cj=new Cj();
-            cj.setPlatformNo(String.valueOf((int)Math.abs((Math.random()*9+1)*1000000000)));
+            cj.setPlatformNo(MadePlatFormNo.platformnolist.get(new Random().nextInt(MadePlatFormNo.platformnolist.size())));
             cj.setProjectNo(MadeUserNo.getSingleUserNo());
             cj.setIdCardType("PRC_ID");
             cj.setIdCardNo(MadeIdNumber.getIdNumber());
