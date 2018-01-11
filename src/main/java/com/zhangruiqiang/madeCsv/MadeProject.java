@@ -3,10 +3,7 @@ package com.zhangruiqiang.madeCsv;
 
 import com.zhangruiqiang.madeCsv.entity.Bd;
 import com.zhangruiqiang.madeCsv.entity.FieldSort;
-import com.zhangruiqiang.madeCsv.util.MadeDate;
-import com.zhangruiqiang.madeCsv.util.MadeHkType;
-import com.zhangruiqiang.madeCsv.util.SubjectNo;
-import com.zhangruiqiang.madeCsv.util.SubjectNo2;
+import com.zhangruiqiang.madeCsv.util.*;
 
 import java.io.*;
 import java.lang.reflect.Field;
@@ -66,6 +63,7 @@ public class MadeProject {
         //int number= (int) (Math.random()*9+1);
         //System.out.println(Math.random()*9+1);
         SubjectNo2.domadeSubjectNoList(row);
+        MadeUserNo.domadeUserNoList(row);
         List list1=makeData(row);
         wiritFile(list1);
     }
@@ -231,19 +229,21 @@ public class MadeProject {
         List<Bd> list=new ArrayList<Bd>();
         for(int i=0;i<row;i++){
             Bd  bd=new Bd();
-            bd.setProjectNo(String.valueOf((int)Math.abs((Math.random()*9+1)*1000000000)));
+            bd.setProjectNo(MadeUserNo.getSingleUserNo());
             bd.setExpectedYield(String.valueOf(Math.abs((Math.random()*9+1))));
             bd.setProjectName(UUID.randomUUID().toString());
             bd.setLoanTime(MadeDate.reanomDate("2016-01-06 12:33:04","2018-01-04 14:23:01"));
             bd.setPlatformNo(String.valueOf((int)Math.abs((Math.random()*9+1)*1000000000)));
             bd.setProjectType("STANDARDPOWDER");
             bd.setRepaymentWay(MadeHkType.getHkType());
-            bd.setProjectPeriod(String.valueOf((int)Math.abs((Math.random()*9+1)*100)));
+            bd.setProjectPeriod(String.valueOf((int)Math.abs((Math.random()*9+1)*10)));
             bd.setTotalInvestment(String.valueOf((int)Math.abs((Math.random()*9+1)*1000)));
             bd.setTotalLoanMoney(String.valueOf((int)Math.abs((Math.random()*9+1)*1000000000)));
             bd.setAmount(String.valueOf((int)Math.abs((Math.random()*9+1)*100000000)));
             bd.setSubjectNo(SubjectNo2.getSingleSubjectNo());
+            //bd.setRepaymentTimes(MadeDate.reanomDate("2016-01-06 12:33:04","2018-01-04 14:23:01"));
             list.add(bd);
+            System.out.println(bd);
         }
         return list;
     }

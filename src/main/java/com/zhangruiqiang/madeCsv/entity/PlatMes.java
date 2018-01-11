@@ -19,9 +19,9 @@ public class PlatMes {
     private String platformOperationTime;
     private String platformlastModifyTime;
     private String registeredAddress;
-    private String registeredProvince;
-    private String registeredCity;
-    private String registeredDistrict;
+    private String Provience;
+    private String City;
+    private String District;
     private String contactAddress;
     private String contacts;
     private String contactsMobile;
@@ -173,28 +173,28 @@ public class PlatMes {
         this.registeredAddress = registeredAddress;
     }
     @FieldSort("19")
-    public String getRegisteredProvince() {
-        return registeredProvince;
+    public String getProvience() {
+        return Provience;
     }
 
-    public void setRegisteredProvince(String registeredProvince) {
-        this.registeredProvince = registeredProvince;
+    public void setProvience(String Provience) {
+        this.Provience = Provience;
     }
     @FieldSort("20")
-    public String getRegisteredCity() {
-        return registeredCity;
+    public String getCity() {
+        return City;
     }
 
-    public void setRegisteredCity(String registeredCity) {
-        this.registeredCity = registeredCity;
+    public void setCity(String City) {
+        this.City = City;
     }
     @FieldSort("21")
-    public String getRegisteredDistrict() {
-        return registeredDistrict;
+    public String getDistrict() {
+        return District;
     }
 
-    public void setRegisteredDistrict(String registeredDistrict) {
-        this.registeredDistrict = registeredDistrict;
+    public void setDistrict(String District) {
+        this.District = District;
     }
     @FieldSort("22")
     public String getContactAddress() {
@@ -231,6 +231,32 @@ public class PlatMes {
 
     @Override
     public String toString() {
-        return super.toString();
+        return "PlatMes{" +
+                "recordType='" + recordType + '\'' +
+                ", platformNo='" + platformNo + '\'' +
+                ", PlatformName='" + PlatformName + '\'' +
+                ", legal='" + legal + '\'' +
+                ", idCardType='" + idCardType + '\'' +
+                ", idCardNo='" + idCardNo + '\'' +
+                ", enterpriseName='" + enterpriseName + '\'' +
+                ", businessLicense='" + businessLicense + '\'' +
+                ", orgNo='" + orgNo + '\'' +
+                ", taxNo='" + taxNo + '\'' +
+                ", bankLicense='" + bankLicense + '\'' +
+                ", creditCode='" + creditCode + '\'' +
+                ", unifiedCode='" + unifiedCode + '\'' +
+                ", webSiteName='" + webSiteName + '\'' +
+                ", webSiteUrl='" + webSiteUrl + '\'' +
+                ", platformOperationTime='" + platformOperationTime + '\'' +
+                ", platformlastModifyTime='" + platformlastModifyTime + '\'' +
+                ", registeredAddress='" + registeredAddress + '\'' +
+                ", Provience='" + Provience + '\'' +
+                ", City='" + City + '\'' +
+                ", District='" + District + '\'' +
+                ", contactAddress='" + contactAddress + '\'' +
+                ", contacts='" + contacts + '\'' +
+                ", contactsMobile='" + contactsMobile + '\'' +
+                ", subjectNo='" + subjectNo + '\'' +
+                '}';
     }
 }

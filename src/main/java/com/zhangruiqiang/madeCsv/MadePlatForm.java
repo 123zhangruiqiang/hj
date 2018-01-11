@@ -61,6 +61,7 @@ public class MadePlatForm {
         FileIo.write(list);
         //int number= (int) (Math.random()*9+1);
         //System.out.println(Math.random()*9+1);
+        MadeUserNo.domadeUserNoList(row);
         SubjectNo2.domadeSubjectNoList(row);
         List list1=makeData(row);
         wiritFile(list1);
@@ -252,7 +253,7 @@ public class MadePlatForm {
         for(int i=0;i<row;i++){
             PlatMes platMes=new PlatMes();
             platMes.setRecordType(MadeRecordType.getRecordTyoe());
-            platMes.setPlatformNo(String.valueOf((int)Math.abs((Math.random()*9+1)*1000000000)));
+            platMes.setPlatformNo(MadePlatFormNo.platformnolist.get(i));
             platMes.setPlatformName(MadePlatformName.getPlatFormName());
             platMes.setLegal(MadeName.madeName());
             platMes.setIdCardType("PRC_ID");
@@ -269,15 +270,18 @@ public class MadePlatForm {
             platMes.setPlatformOperationTime(MadeDate.reanomDate("2016-12-03 12:33:04","2018-01-04 14:23:01").toString());
             platMes.setPlatformlastModifyTime(MadeDate.reanomDate("2016-12-03 12:33:04","2018-01-04 14:23:01").toString());
             platMes.setRegisteredAddress(MadeAddress.getResAddress());
-
-            platMes.setRegisteredProvince(MadeAddress.getProvince());
-            platMes.setRegisteredCity(MadeAddress.getCity());
-            platMes.setRegisteredDistrict(MadeAddress.getDistrict());
+            System.out.println(MadeAddress.getProvince()+"}}}}}}}}}}}}}}}}}");
+            platMes.setProvience(MadeAddress.getProvince());
+            System.out.println(MadeAddress.getCity()+"}}}}}}}}}}}}");
+            platMes.setCity(MadeAddress.getCity());
+            System.out.println(MadeAddress.getDistrict()+"}}}}}}}}}}}}}}}");
+            platMes.setDistrict(MadeAddress.getDistrict());
             platMes.setContactAddress(MadeAddress.getResAddress());
             platMes.setContacts(MadeName.madeName());
             platMes.setContactsMobile(MadePhone.getPhone());
             platMes.setSubjectNo(SubjectNo2.getSingleSubjectNo());
             list.add(platMes);
+            System.out.println(platMes.toString());
         }
         return list;
     }

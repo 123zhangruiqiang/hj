@@ -11,6 +11,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
 
+import static javafx.scene.input.KeyCode.F;
+
 public class MadeBrossor {
 
     public static void main(String[] args)  {
@@ -63,6 +65,7 @@ public class MadeBrossor {
         }
         // FileIo.write(list);
         SubjectNo2.domadeSubjectNoList(row);
+        MadeUserNo.domadeUserNoList(row);
         System.out.println(SubjectNo2.list.size());
         System.out.println(SubjectNo2.list);
         writeFi(list);
@@ -79,9 +82,11 @@ public class MadeBrossor {
         String folder="D://zipdata//";
         File file=new File(folder,"BORROWER_INFO.csv");
         BufferedWriter bf=null;
+        OutputStreamWriter ir=null;
         try {
-            FileWriter fw=new FileWriter(file);
-            bf=new BufferedWriter(fw);
+            //FileWriter fw=new FileWriter(file);
+            ir=new OutputStreamWriter(new FileOutputStream(file),"utf-8");
+            bf=new BufferedWriter(ir);
             for(int i=0;i<list.size();i++){
 
 
@@ -118,13 +123,15 @@ public class MadeBrossor {
         System.out.println(file);
         BufferedWriter bf=null;
         System.out.println(list);
-        FileWriter fw= null;
+        //FileWriter fw= null;
+        OutputStreamWriter ir=null;
         try {
-            fw = new FileWriter(file,true);
+            //fw = new FileWriter(file,true);
+            ir=new OutputStreamWriter(new FileOutputStream(file,true),"utf-8");
         } catch (IOException e) {
             e.printStackTrace();
         }
-        bf=new BufferedWriter(fw);
+        bf=new BufferedWriter(ir);
         for(int i=0;i<list.size();i++){
 
             System.out.println(list.get(i));
@@ -240,7 +247,7 @@ public class MadeBrossor {
         List<Jpop> list=new ArrayList<Jpop>();
         for(int i=0;i<row;i++){
             Jpop jpop=new Jpop();
-            jpop.setUserNo(String.valueOf((int)Math.abs((Math.random()*9+1)*1000000000)));
+            jpop.setUserNo(MadeUserNo.getSingleUserNo());
             jpop.setPlatformNo(String.valueOf((int)Math.abs((Math.random()*9+1)*1000000000)));
             jpop.setUserType(MadeUserType.getUserType());
             jpop.setRealName(MadeName.madeName());

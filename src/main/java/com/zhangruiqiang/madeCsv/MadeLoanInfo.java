@@ -59,6 +59,7 @@ public class MadeLoanInfo {
         }
         // FileIo.write(list);
         SubjectNo2.domadeSubjectNoList(row);
+        MadeUserNo.domadeUserNoList(row);
         writeFi(list);
         //int number= (int) (Math.random()*9+1);
         //System.out.println(Math.random()*9+1);
@@ -223,7 +224,7 @@ public class MadeLoanInfo {
         for(int i=0;i<row;i++){
             Cj cj=new Cj();
             cj.setPlatformNo(String.valueOf((int)Math.abs((Math.random()*9+1)*1000000000)));
-            cj.setProjectNo(String.valueOf((int)Math.abs((Math.random()*9+1)*1000000000)));
+            cj.setProjectNo(MadeUserNo.getSingleUserNo());
             cj.setIdCardType("PRC_ID");
             cj.setIdCardNo(MadeIdNumber.getIdNumber());
             cj.setInvestmentTime(MadeDate.reanomDate("2016-01-06 12:33:04","2018-01-04 14:23:01"));

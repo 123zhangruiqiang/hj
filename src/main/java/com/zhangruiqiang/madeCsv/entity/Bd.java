@@ -13,6 +13,8 @@ public class Bd {
     private String totalInvestment;
     private String LoanTime;
     private String subjectNo;
+    //private String repaymentTimes;
+
     @FieldSort("1")
     public String getPlatformNo() {
         return platformNo;
@@ -110,5 +112,31 @@ public class Bd {
 
     public void setSubjectNo(String subjectNo) {
         this.subjectNo = subjectNo;
+    }
+    /*@FieldSort("12")
+    public String getRepaymentTimes() {
+        return repaymentTimes;
+    }
+
+    public void setRepaymentTimes(String repaymentTimes) {
+        this.repaymentTimes = repaymentTimes;
+    }*/
+
+    @Override
+    public String toString() {
+        return "Bd{" +
+                "platformNo='" + platformNo + '\'' +
+                ", projectNo='" + projectNo + '\'' +
+                ", ProjectName='" + ProjectName + '\'' +
+                ", projectType='" + projectType + '\'' +
+                ", amount='" + amount + '\'' +
+                ", repaymentWay='" + repaymentWay + '\'' +
+                ", projectPeriod='" + projectPeriod + '\'' +
+                ", expectedYield='" + expectedYield + '\'' +
+                ", totalLoanMoney='" + totalLoanMoney + '\'' +
+                ", totalInvestment='" + totalInvestment + '\'' +
+                ", LoanTime='" + LoanTime + '\'' +
+                ", subjectNo='" + subjectNo + '\'' +
+                '}';
     }
 }
